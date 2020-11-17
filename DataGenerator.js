@@ -71,7 +71,7 @@ var connection = mysql.createConnection({
 
 
 values.forEach((x, index) => {
-  connection.query ('INSERT INTO reviews (description, rating, helpful, user, productid) VALUES ' + `('${x.description}', ${x.rating}, ${x.engagement}, '${x.user}', ${x.productid})`, (err, results, fields) => {
+  connection.query ('INSERT INTO reviews (title, description, rating, helpful, user, productid) VALUES ' + `('${x.title}','${x.description}', ${x.rating}, ${x.engagement}, '${x.user}', ${x.productid})`, (err, results, fields) => {
     if (err) {
       console.log(err)
     } else {
@@ -84,9 +84,6 @@ values.forEach((x, index) => {
           } else {
             console.log(results);
           }
-          // if (index === values.length-1) {
-          //   setTimeout(() => connection.end(), 5000);
-          // }
         })
       })
     }

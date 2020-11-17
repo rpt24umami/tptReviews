@@ -12,14 +12,14 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('/reviews')
+    axios.get('/reviews/1')
       .then(results => this.setState({reviews: results.data}))
       .then(() => console.log(this.state))
   }
 
   render() {
     var reviews = this.state.reviews.map ((review) => {
-      return <Review/>
+      return <Review review={review}/>
     })
     return reviews;
   }

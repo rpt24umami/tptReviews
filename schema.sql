@@ -7,9 +7,8 @@ USE REVIEWS;
 CREATE TABLE reviews (
   id INT AUTO_INCREMENT PRIMARY KEY,
   description varchar(10000) not null,
+  title varchar(250),
   rating INT,
-  grade INT,
-  standards INT,
   helpful INT,
   user varchar(30),
   productid INT

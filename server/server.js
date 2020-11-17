@@ -11,8 +11,9 @@ app.get('/', (req, res) => {
   res.send('index.html')
 })
 
-app.get('/reviews', (req,res) => {
-  db.query('select * from reviews LIMIT 10', (err, results) => {
+app.get('/reviews/:id', (req,res) => {
+  db.query(`select * from reviews where productid = ${req.params.id} LIMIT 10`, (err, results) => {
+    console.log(req.params);
     res.send(results);
   });
 });
@@ -21,6 +22,3 @@ app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
 
-db.query('select * from reviews LIMIT 10', (err, results) => {
-  console.log(results);
-});

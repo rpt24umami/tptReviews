@@ -4,7 +4,8 @@
   "description": "Proxy Server",
   "main": "DataGenerator.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "setup" : "mysql reviews < schema.sql && node DataGenerator.js"
   },
   "repository": {
     "type": "git",
@@ -22,7 +23,8 @@
     "express": "^4.17.1",
     "mysql": "^2.18.1",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "styled-components": "^5.2.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.1",
