@@ -21,7 +21,7 @@ const reviewsSchema = new mongoose.Schema({
 
 const Review = mongoose.model('Review', reviewsSchema);
 
-//Review.collection.drop({});
+// Review.collection.drop({});
 
 const firstValue = new Review({ description: 'Description', alignment: ['1', '2'] });
 
@@ -31,4 +31,4 @@ firstValue.save((err, review) => {
   }
 });
 
-module.exports = Review;
+module.exports = { db, review: Review, schema: reviewsSchema };
