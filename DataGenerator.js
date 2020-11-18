@@ -1,8 +1,8 @@
 /* eslint-disable no-shadow */
 /* eslint-disable no-redeclare */
 /* eslint-disable block-scoped-var */
-const mysql = require('mysql');
-const Promise = require('bluebird');
+const Mongoose = require('mongoose');
+const db = require('./server/mongodb.js');
 
 const words = 'Skizzle Sevit Defas Looplab Doggax Qerrassa Nalpure Shorogyt Zestpond Naperone Noxu Hexteria Eggmode Chucknology Bistup Sinpad Reiltas Steeplump Kizerain Spusious Lotadilo Swooflia Bronea Hawkloon Chevesic Skaxis Lulerain Nekmunnit Crestboot Unpossible Foxclore Vasagle Stepjump Gleblu Castrealm Luezoid Chesture Feandra Boaclick Yammoe Mofoblitz Xanpon Singlewave Roplixoo Losenoid Loodon Rowlow Claster Pepelexa Ploosnar Wazzasoft Pruvia Tomash Bumola Sorson Roinad Luwest Digisol Gorealm Unelind Cazoova Johackle Sooprno Modgone Chillpal Olielle Burder Safome Bumooxa Grodsaar Swopom Soostev Creahoof Aberidus Sasaroo Viottis Scitenoa Drirathiel Trelod Jiofrax Chacaka Blewrath Underdoug Oeiwlax Bocilile Boxium Sophile Diddly Foxlink Hoophorn Joorflea Yetaland Valerine Sestoo Frosac Woimeth Jerohald Miozzix Lotadilo Swooflia Bronea Hawkloon Chevesic Skaxis Lulerain Nekmunnit Crestboot Unpossible Foxclore Vasagle Stepjump Gleblu Castrealm Luezoid Chesture Feandra Boaclick Yammoe Mofoblitz Xanpon Singlewave Roplixoo Losenoid Loodon Rowlow Claster Pepelexa Sertave Dropellet Jeebus Noodile Drearien Kaloolon Norrisology Ybuwyn Fuffapster Jobox Creabird Astauand Mizuxe Slabdrill Zestybus Ferirama Tuttadit Printure Geosyog Plakill Shorogyt Zestpond Naperone Noxu Hexteria Eggmode Chucknology Bistup Sinpad Reiltas Steeplump Kizerain Spusious Lotadilo Swooflia Bronea Hawkloon Chevesic Skaxis Lulerain Nekmunnit Crestboot Unpossible Foxclore Vasagle Stepjump Gleblu Castrealm Luezoid Chesture Feandra Boaclick Yammoe Mofoblitz Xanpon Singlewave Roplixoo Losenoid Loodon Rowlow Claster Pepelexa Sertave Dropellet Jeebus Noodile Drearien Kaloolon Norrisology Dohi Plifal Groopster Drywest Fapster Chaintwist Sislaf Glozzom Zapster Pricenano Pentwist Trealop Shizzo Dododox Weepeggle Bookbox Duzafizz Fliondeso Ahoy-wut Miresa Looncan Cheilith Kiraric Parede Besloor Wavefire Glomtom Aferraron Tupacase Didiza Chershoee Onama Biasdo Boxscape Seiliu Chorenn Wetwest Novaly Werradith Hoppler Eraow Acaer Yoffa Jeren Tupress Animepolis Noelind Ekcle Hendassa Shizzo Dododox Weepeggle Bookbox Duzafizz Fliondeso Ahoy-wut Miresa Looncan Cheilith Kiraric Parede Besloor Wavefire Glomtom Aferraron Tupacase Didiza Chershoee Onama Biasdo Boxscape Seiliu Chorenn Wetwest Novaly Werradith Hoppler Eraow Acaer Yoffa Jeren Tupress Animepolis Noelind Ekcle Hendassa Glaretram';
 
@@ -37,14 +37,14 @@ const generateData = function () {
   returnData.standards = [];
   for (let i = 0; i < Math.floor(Math.random() * 3); i += 1) {
     returnData.standards.push({
-      standard: standards[Math.floor(Math.random() * 3)],
+      standard: standards[Math.floor(Math.random() * 3)].join(' '),
       alignment: Math.floor(Math.random() * 5) + 1,
     });
   }
   // Helpful
   returnData.helpful = Math.floor(Math.random() * 10);
   returnData.user = `${data[Math.floor(Math.random() * data.length)]} ${data[Math.floor(Math.random() * data.length)]}`;
-  returnData.productid = 1;
+  returnData.productId = 1;
   return returnData;
 };
 
@@ -59,38 +59,19 @@ const seed = function (n) {
 };
 // Generate 100 pieces of data
 const values = seed(100);
-
-
-const connection = mysql.createConnection({
-  user: 'root',
-  password: '',
-  database: 'reviews',
-});
-
-values.forEach((x) => {
-  connection.query('INSERT INTO reviews (title, description, rating, helpful, user, productid) VALUES ' + `('${x.title}','${x.description}', ${x.rating}, ${x.engagement}, '${x.user}', ${x.productid})`, (err, results, fields) => {
+db.collection.drop({});
+values.forEach((item) => {
+  const value = new db(item);
+  value.save((err, review) => {
     if (err) {
       console.log(err);
     } else {
-      console.log('HELLO', results);
-      x.standards.forEach((standard) => {
-        console.log(standard);
-        connection.query(`INSERT INTO alignment (review, standard, alignment) VALUES (${results.insertId}, '${standard.standard.join(' ')}', ${standard.alignment})`, (err, results, fields) => {
-          if (err) {
-            console.log(err);
-          } else {
-            console.log(results);
-          }
-        });
-      });
+      console.log(review);
     }
-    x.grade.forEach((grade) => {
-      connection.query(`INSERT INTO grade (review, grade) VALUES ( ${results.insertId},'${grade}')`);
-    });
-    console.log(x);
   });
 });
 
-setTimeout(() => connection.end(), 3000);
-
+setTimeout(() => {
+  Mongoose.connection.close();
+}, 3000);
 // connection.end();
