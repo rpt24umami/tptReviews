@@ -14,7 +14,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('/reviews/1')
+    axios.get('/1/reviews/')
       .then((results) => this.setState({ reviews: results.data }))
       .then(() => console.log(this.state));
   }
