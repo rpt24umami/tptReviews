@@ -17,12 +17,10 @@ app.get('/:id/reviews/', (req, res) => {
     console.log(req.params.id);
     console.log(results, 'hello');
     res.send(results);
-  });
+  }).limit(20);
 });
 
 app.listen(port, () => {
   // eslint-disable-next-line no-console
   console.log(`Example app listening at http://localhost:${port}`);
 });
-
-
