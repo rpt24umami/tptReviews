@@ -60,13 +60,7 @@ const seed = function (n) {
 // Generate 100 pieces of data
 const values = seed(100);
 
-// var query = ''
 
-// // values.forEach( (x) => {
-// // query+= `('${x.description}', ${x.rating}, ${x.engagement}, '${x.user}', ${x.productid}),`
-// // })
-// // query = query.slice(0, query.length-1);
-// console.log(query);
 const connection = mysql.createConnection({
   user: 'root',
   password: '',
