@@ -22,6 +22,17 @@ describe('Server Testing', () => {
         done();
       });
   });
+  test('It should receive an object with count of ratings divided by star, average rating, count by grade', (done) => {
+    request(app)
+      .get('/1/ratings')
+      .then(response => {
+        expect(typeof response.body).toBe('object');
+        for (let i = 0; i < response.body.length; i++) {
+          expect(response.body[i]).not.toBe(undefined);
+        }
+        done();
+      })
+  });
 });
 
 // const fetchData = async () => {
