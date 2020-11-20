@@ -6,8 +6,8 @@ const app = express();
 
 const path = require('path');
 
-const { db, review, schema } = require('./mongodb.js');
 const { ModuleFilenameHelpers } = require('webpack');
+const { db, review, schema } = require('./mongodb.js');
 
 app.use(express.static(path.join(__dirname, '../dist')));
 
@@ -24,10 +24,47 @@ app.get('/:id/reviews/', (req, res) => {
 app.get('/:id/ratings', (req, res) => {
   console.log(req.params.id);
   const match = req.params.id;
-  review.aggregate([{ $match: { productId: parseInt(`${req.params.id}`) } }, { $group: { _id: '$productId', average: { $avg: '$rating' }, count: { $sum: 1 } } }], (err, result) => {
-    console.log(err);
-    console.log(result);
-    res.send(result);
+  const returnValue = [];
+  review.aggregate([{ $match: { productId: parseInt(req.params.id) } }, { $group: { _id: '$productId', average: { $avg: '$rating' }, count: { $sum: 1 } } }], (err, result) => {
+    if (err) {
+      res.send(err);
+      return;
+    }
+    returnValue.push(result);
+    review.aggregate([{
+      $project: {
+        _id: 0,
+        grade: 1,
+        productId: 1,
+      },
+    }, { $match: { productId: parseInt(req.params.id) } },
+    {
+      $unwind: '$grade',
+    }, {
+      $group: {
+        _id: '$grade',
+        count: {
+          $sum: 1,
+        },
+      },
+    },
+    ], (err, result) => {
+      if (err) {
+        res.send(err);
+        return;
+      }
+      returnValue.push(result);
+      review.aggregate([{ $match: { productId: parseInt(req.params.id) } },
+        { $group: { _id: '$rating', count: { $sum: 1 } } },
+      ], (err, result) => {
+        if (err) {
+          res.send(err);
+          return;
+        }
+        returnValue.push(result);
+        res.send(returnValue);
+      });
+    });
   });
 });
 

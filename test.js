@@ -4,18 +4,21 @@ const request = require("supertest");
 
 const app = require('./server/app');
 
-
-
 function xit() {
 
 }
 
+function xdescribe() {
+
+}
+
 describe('Server Testing', () => {
-  test('It should get a response from the GET', (done) => {
+  test('It should receive an object of reviews from the GET', (done) => {
     request(app)
       .get('/1/reviews')
       .then(response => {
-        expect(typeof response).toBe('object');
+        expect(typeof response.body).toBe('object');
+        expect(response.body[0].productId).not.toBe(undefined);
         done();
       });
   });
