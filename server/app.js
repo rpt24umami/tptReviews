@@ -25,7 +25,6 @@ app.get('/:id/reviews/', (req, res) => {
   });
   review.find(query, (err, results) => {
     returnObject['reviews'] = results;
-    console.log(results);
     review.find().distinct('grade', (err, grades) => {
       if (err) {
         res.send(err);
@@ -49,7 +48,6 @@ app.put('/helpful/:reviewId', (req, res) => {
 });
 
 app.get('/:id/ratings', (req, res) => {
-  console.log(req.params.id);
   const match = req.params.id;
   const returnValue = [];
   review.aggregate([{ $match: { productId: parseInt(req.params.id) } }, { $group: { _id: '$productId', average: { $avg: '$rating' }, count: { $sum: 1 } } }], (err, result) => {
