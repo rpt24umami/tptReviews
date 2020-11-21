@@ -17,10 +17,43 @@ function Review(props) {
   return (
     <div>
       <StyledUser>{props.review.user}</StyledUser>
-      <StyledTitle>{props.review.title}</StyledTitle>
+      <StyledTitle>
+        {(function () {
+          let satisfaction = '';
+          switch (props.review.rating) {
+            case 1:
+              satisfaction = 'Not Satisfied';
+              break;
+            case 2:
+              satisfaction = 'Barely Satisfied';
+              break;
+            case 3:
+              satisfaction = 'Somewhat Satisfied';
+              break;
+            case 4:
+              satisfaction = 'Very Satisified';
+              break;
+            case 5:
+              satisfaction = 'Extremely Satisfied';
+              break;
+            default:
+              satisfaction = '';
+          }
+          return satisfaction;
+        }())}
+      </StyledTitle>
       <div>{props.review.rating}</div>
       <div>{props.review.description}</div>
-      <div>{props.review.helpful}</div>
+      <div
+        className="fa fa-thumbs-up"
+        onClick={() => {
+          props.helpful(props.review._id);
+        }}
+      >
+        {props.review.helpful}
+        {' '}
+        Helpful
+      </div>
     </div>
   );
 }

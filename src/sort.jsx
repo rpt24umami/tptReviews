@@ -12,53 +12,24 @@ class Sort extends React.Component {
       <div>
         <div>
           <ul>
-            <li>5 stars</li>
-          </ul>
-          <ul>
-            <li>4 stars</li>
-          </ul>
-          <ul>
-            <li>3 stars</li>
-          </ul>
-          <ul>
-            <li>2 stars</li>
-          </ul>
-          <ul>
-            <li>1 star</li>
+            <li value="5">5 stars </li>
+            <li value="4">4 stars</li>
+            <li value="3">3 stars</li>
+            <li value="2">2 stars</li>
+            <li value="1">1 star</li>
           </ul>
         </div>
         <div>
           <ul>
-            <li>5 stars</li>
-          </ul>
-          <ul>
-            <li>4 stars</li>
-          </ul>
-          <ul>
-            <li>3stars</li>
-          </ul>
-          <ul>
-            <li>2 stars</li>
-          </ul>
-          <ul>
-            <li>1 star</li>
+            {this.props.grades.map((grade) => <li>{grade}</li>)}
           </ul>
         </div>
         <div>
           <ul>
-            <li>5 stars</li>
-          </ul>
-          <ul>
-            <li>4 stars</li>
-          </ul>
-          <ul>
-            <li>3 stars</li>
-          </ul>
-          <ul>
-            <li>2 stars</li>
-          </ul>
-          <ul>
-            <li>1 star</li>
+            <li>Learning difficulties</li>
+            <li>Mild to sever disabilities</li>
+            <li>Autism Spectrum</li>
+            <li>Emerging bilinguals/ELs/ESOLs/ENLs</li>
           </ul>
         </div>
       </div>

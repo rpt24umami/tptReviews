@@ -17,8 +17,15 @@ app.get('/', (req, res) => {
 
 app.get('/:id/reviews/', (req, res) => {
   const returnObject = {};
-  review.find({ productId: req.params.id }, (err, results) => {
+  let query = { productId: req.params.id, grade: (req.query.grades !== 'false') ? req.query.grades : undefined, rating: (req.query.ratings !== 'false') ? req.query.ratings : undefined}
+  Object.keys(query).forEach(key => {
+    if (query[key] === undefined) {
+      delete query[key];
+    }
+  });
+  review.find(query, (err, results) => {
     returnObject['reviews'] = results;
+    console.log(results);
     review.find().distinct('grade', (err, grades) => {
       if (err) {
         res.send(err);
@@ -28,6 +35,17 @@ app.get('/:id/reviews/', (req, res) => {
       res.send(returnObject);
     });
   }).limit(20);
+});
+
+app.put('/helpful/:reviewId', (req, res) => {
+  review.findOneAndUpdate({ _id: req.params.reviewId }, {$inc: {helpful: 1}}, (err, results) => {
+    if (err) {
+      console.log(err);
+      res.send(err);
+      return;
+    }
+    res.send(results);
+  });
 });
 
 app.get('/:id/ratings', (req, res) => {
