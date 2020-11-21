@@ -16,8 +16,17 @@ app.get('/', (req, res) => {
 });
 
 app.get('/:id/reviews/', (req, res) => {
+  const returnObject = {};
   review.find({ productId: req.params.id }, (err, results) => {
-    res.send(results);
+    returnObject['reviews'] = results;
+    review.find().distinct('grade', (err, grades) => {
+      if (err) {
+        res.send(err);
+        return;
+      }
+      returnObject.grades = grades;
+      res.send(returnObject);
+    });
   }).limit(20);
 });
 
