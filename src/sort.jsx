@@ -21,7 +21,7 @@ class Sort extends React.Component {
         </div>
         <div>
           <ul>
-            {this.props.grades.map((grade) => <li>{grade}</li>)}
+            {this.props.grades.map((grade, key) => <li key ={key}>{grade}</li>)}
           </ul>
         </div>
         <div>

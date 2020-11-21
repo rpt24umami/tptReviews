@@ -50,6 +50,8 @@ app.put('/helpful/:reviewId', (req, res) => {
 app.get('/:id/ratings', (req, res) => {
   const match = req.params.id;
   const returnValue = [];
+  const matNames = ['Dice Rolling Probability', 'Laplace Transforms, real world applications', 'American History 1700-1800', 'Github for Dummies'];
+  returnValue.push(matNames[Math.floor((Math.random() * matNames.length))]);
   review.aggregate([{ $match: { productId: parseInt(req.params.id) } }, { $group: { _id: '$productId', average: { $avg: '$rating' }, count: { $sum: 1 } } }], (err, result) => {
     if (err) {
       res.send(err);

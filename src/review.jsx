@@ -3,21 +3,20 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const StyledUser = styled.div`
-  font-size: 16px;
-`;
+// const StyledUser = styled.div`
+//   font-size: 16px;
+// `;
 
-const StyledTitle = styled.div`
-  font-size: 16px;
-  font-weight: bold;
-`;
+// const StyledTitle = styled.div`
+//   font-size: 16px;
+//   font-weight: bold;
+// `;
 
 function Review(props) {
-  console.log(props);
   return (
     <div>
-      <StyledUser>{props.review.user}</StyledUser>
-      <StyledTitle>
+      <div>{props.review.user}</div>
+      <div>
         {(function () {
           let satisfaction = '';
           switch (props.review.rating) {
@@ -41,7 +40,7 @@ function Review(props) {
           }
           return satisfaction;
         }())}
-      </StyledTitle>
+      </div>
       <div>{props.review.rating}</div>
       <div>{props.review.description}</div>
       <div

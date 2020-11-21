@@ -5,7 +5,7 @@
   "main": "DataGenerator.js",
   "scripts": {
     "test": "jest --coverage --detectOpenHandles",
-    "setup": "mysql reviews < schema.sql && node DataGenerator.js"
+    "setup": "node DataGenerator.js"
   },
   "repository": {
     "type": "git",
