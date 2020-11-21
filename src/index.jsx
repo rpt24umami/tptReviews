@@ -44,7 +44,7 @@ class App extends React.Component {
   }
 
   render() {
-    const reviews = this.state.reviews.map((review) => <Review review={review} helpful={this.addHelpful}/>);
+    const reviews = this.state.reviews.map((review, key) => <Review review={review} helpful={this.addHelpful} key={key}/>);
     return (
       <div>
         <Sort grades={this.state.grades} />
@@ -54,4 +54,4 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('root'));
+export {App};
