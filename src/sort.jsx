@@ -27,7 +27,7 @@ class Sort extends React.Component {
         <div>
           <ul>
             <li>Learning difficulties</li>
-            <li>Mild to sever disabilities</li>
+            <li>Mild to severe disabilities</li>
             <li>Autism Spectrum</li>
             <li>Emerging bilinguals/ELs/ESOLs/ENLs</li>
           </ul>

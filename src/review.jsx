@@ -2,6 +2,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import styled from 'styled-components';
+import Ratings from './ratings.jsx';
 
 // const StyledUser = styled.div`
 //   font-size: 16px;
@@ -14,9 +15,18 @@ import styled from 'styled-components';
 
 function Review(props) {
   return (
-    <div>
-      <div>{props.review.user}</div>
-      <div>
+    <div className="reviewContainer">
+      <div className="avatar">
+        <span>
+          <img className="avatar_img" src="https://ecdn1.teacherspayteachers.com/images/avatars/default.jpg" />
+        </span>
+        <div className="avatar_namedate">
+          <p className="avatar_namedate_name">{props.review.user}</p>
+          <p className="avatar_namedate_date"> October 25th, 2020</p>
+        </div>
+      </div>
+      <div className="rating">
+        <Ratings rating={props.review.rating} />
         {(function () {
           let satisfaction = '';
           switch (props.review.rating) {
@@ -41,7 +51,6 @@ function Review(props) {
           return satisfaction;
         }())}
       </div>
-      <div>{props.review.rating}</div>
       <div>{props.review.description}</div>
       <div
         className="fa fa-thumbs-up"
