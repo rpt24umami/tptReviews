@@ -21,12 +21,19 @@ class App extends React.Component {
     };
     this.getReviews = this.getReviews.bind(this);
     this.addHelpful = this.addHelpful.bind(this);
+    this.onSortChange = this.onSortChange.bind(this);
   }
 
   componentDidMount() {
     this.getReviews();
   //   axios.get(`/${this.state.productId}/reviews/`)
   //     .then((results) => this.setState({ reviews: results.data.reviews, grades: results.data.grades }));
+  }
+
+  onSortChange(e) {
+    let oldSort = { ...this.state.sort };
+    oldSort[e.target.id] = (e.target.value === '0') ? undefined : e.target.value;
+    this.setState({ sort: oldSort }, this.getReviews);
   }
 
   getReviews() {
@@ -47,7 +54,7 @@ class App extends React.Component {
     const reviews = this.state.reviews.map((review, key) => <Review review={review} helpful={this.addHelpful} key={key}/>);
     return (
       <div>
-        <Sort grades={this.state.grades} />
+        <Sort grades={this.state.grades} onSort={this.onSortChange} />
         {reviews}
       </div>
     );
