@@ -3,6 +3,7 @@ div {
 }
 
 .reviewContainer {
+  width: 30%;
   background-color: #fff;
   box-sizing: border-box;
   color: #222;
@@ -65,4 +66,14 @@ div {
 
 .rating_star {
   display: inline-block;
+}
+
+.alignment {
+  box-sizing:border-box;
+  width: 20%;
+  background-color: #ddd;
+}
+
+.alignmentBar {
+  background-color:#2c358b;
 }

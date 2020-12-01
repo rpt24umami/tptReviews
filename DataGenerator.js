@@ -44,7 +44,7 @@ const generateData = function () {
   // Helpful
   returnData.helpful = Math.floor(Math.random() * 10);
   returnData.user = `${data[Math.floor(Math.random() * data.length)]} ${data[Math.floor(Math.random() * data.length)]}`;
-  returnData.productId = 1;
+  returnData.productId = Math.floor(Math.random() * 100) + 1;
   return returnData;
 };
 
