@@ -27,29 +27,31 @@ function Review(props) {
       </div>
       <div className="rating">
         <Ratings rating={props.review.rating} />
-        {(function () {
-          let satisfaction = '';
-          switch (props.review.rating) {
-            case 1:
-              satisfaction = 'Not Satisfied';
-              break;
-            case 2:
-              satisfaction = 'Barely Satisfied';
-              break;
-            case 3:
-              satisfaction = 'Somewhat Satisfied';
-              break;
-            case 4:
-              satisfaction = 'Very Satisified';
-              break;
-            case 5:
-              satisfaction = 'Extremely Satisfied';
-              break;
-            default:
-              satisfaction = '';
-          }
-          return satisfaction;
-        }())}
+        <b>
+          {(function () {
+            let satisfaction = '';
+            switch (props.review.rating) {
+              case 1:
+                satisfaction = 'Not Satisfied';
+                break;
+              case 2:
+                satisfaction = 'Barely Satisfied';
+                break;
+              case 3:
+                satisfaction = 'Somewhat Satisfied';
+                break;
+              case 4:
+                satisfaction = 'Very Satisified';
+                break;
+              case 5:
+                satisfaction = 'Extremely Satisfied';
+                break;
+              default:
+                satisfaction = '';
+            }
+            return satisfaction;
+          }())}
+        </b>
       </div>
       <div>{props.review.description}</div>
       <br />
