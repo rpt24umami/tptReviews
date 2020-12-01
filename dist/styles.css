@@ -71,9 +71,12 @@ div {
 .alignment {
   box-sizing:border-box;
   width: 20%;
+  height: 5px;
   background-color: #ddd;
 }
 
 .alignmentBar {
+  height: 5px;
   background-color:#2c358b;
+  font-size: 0;
 }

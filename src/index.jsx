@@ -37,7 +37,7 @@ class App extends React.Component {
   }
 
   getReviews() {
-    axios.get(`/${this.state.productId}/reviews?ratings=${this.state.sort.ratings || false}&grades=${this.state.sort.grades || false}`)
+    axios.get(`products/${this.state.productId}/reviews?ratings=${this.state.sort.ratings || false}&grades=${this.state.sort.grades || false}`)
       .then((results) => this.setState(
         {
           reviews: results.data.reviews, grades: results.data.grades,

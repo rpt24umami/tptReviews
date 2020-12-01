@@ -58,7 +58,7 @@ const seed = function (n) {
   return returnArray;
 };
 // Generate 100 pieces of data
-const values = seed(100);
+const values = seed(400);
 db.collection.drop({});
 values.forEach((item) => {
   const value = new db(item);
@@ -73,5 +73,5 @@ values.forEach((item) => {
 
 setTimeout(() => {
   Mongoose.connection.close();
-}, 3000);
+}, 12000);
 // connection.end();

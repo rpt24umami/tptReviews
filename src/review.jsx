@@ -58,14 +58,18 @@ function Review(props) {
         <div className="gradesUsedNames"><b>{props.review.grade.join(', ')}</b></div>
       </div>
       <br />
-      <div> Alignment to standards</div>
-      {props.review.standards.map((item) => {
-        return (
-          <div className="alignment">
-            <div className="alignmentBar" style={{ width: `${String(100 * (item.alignment / 5))}%` }}>|</div>
+      <div className="alignmentContainer">
+        <div> Alignment to standards</div>
+        {props.review.standards.map((item) => (
+          <div>
+            <div>{item.standard}</div>
+            <div className="alignment">
+              <div className="alignmentBar" style={{ width: `${String(100 * (item.alignment / 5))}%` }}>|</div>
+            </div>
           </div>
-        );
-      })}
+        ))}
+      </div>
+      <br />
       <div
         className="fa fa-thumbs-up"
         onClick={() => {

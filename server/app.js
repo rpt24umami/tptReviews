@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
   res.send('index.html');
 });
 
-app.get('/:id/reviews/', (req, res) => {
+app.get('/products/:id/reviews/', (req, res) => {
   const returnObject = {};
   let query = { productId: req.params.id, grade: (req.query.grades !== 'false') ? req.query.grades : undefined, rating: (req.query.ratings !== 'false') ? req.query.ratings : undefined}
   Object.keys(query).forEach(key => {
@@ -47,7 +47,7 @@ app.put('/helpful/:reviewId', (req, res) => {
   });
 });
 
-app.get('/:id/ratings', (req, res) => {
+app.get('/products/:id/ratings', (req, res) => {
   const match = req.params.id;
   const returnValue = [];
   const matNames = ['Dice Rolling Probability', 'Laplace Transforms, real world applications', 'American History 1700-1800', 'Github for Dummies'];
