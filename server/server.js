@@ -1,16 +1,8 @@
-const express = require('express')
-const app = express()
-const port = 3001
-const path = require('path');
+const app = require("./app");
 
-app.use(express.static(path.join(__dirname, '../dist')));
-
-
-console.log(path.join(__dirname, '../dist'));
-app.get('/', (req, res) => {
-  res.send('index.html')
-})
+const port = 3001;
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port} ${__dirname}`)
-})
+  // eslint-disable-next-line no-console
+  console.log(`Example app listening at http://localhost:${port}`);
+});

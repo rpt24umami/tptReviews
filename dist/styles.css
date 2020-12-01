@@ -1,0 +1,83 @@
+div {
+  display: block;
+}
+
+.reviewContainer {
+  width: 600px;
+  background-color: #fff;
+  box-sizing: border-box;
+  color: #222;
+  border-bottom: 1px solid black;
+  font: 12px Proxima Nova,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+.sortContainer div {
+  display: inline-block;
+}
+
+.avatar {
+  font-size: 14px;
+  display: flex;
+}
+
+.avatar_img {
+  vertical-align: middle;
+  border-radius: 50%;
+  max-width: 30%;
+  height: auto;
+  margin:0;
+  padding: 5px;
+}
+
+.avatar_namedate {
+  margin-left: 12px;
+  vertical-align: middle;
+}
+
+.avatar_namedate_date {
+  color: #777;
+}
+
+#sortGrade {
+
+}
+
+.dropdownButton {
+  border: 1px solid #777;
+  padding: 2px 5px 2px 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.dropdownButton  + .dropdownButton {
+  margin-left: 5px;
+}
+
+.rating {
+  -webkit-box-align: center;
+  flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+}
+
+.rating>:first-child {
+  margin-right: 6px;
+}
+
+.rating_star {
+  display: inline-block;
+}
+
+.alignment {
+  box-sizing:border-box;
+  width: 20%;
+  height: 5px;
+  background-color: #ddd;
+}
+
+.alignmentBar {
+  height: 5px;
+  background-color:#2c358b;
+  font-size: 0;
+}
+
