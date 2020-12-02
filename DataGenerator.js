@@ -49,6 +49,7 @@ const generateData = function () {
 };
 
 // Creates n amounts of data
+
 const seed = function (n) {
   const returnArray = [];
   for (let i = 0; i < n; i++) {
@@ -58,20 +59,30 @@ const seed = function (n) {
   return returnArray;
 };
 // Generate 100 pieces of data
+function save(value) {
+  return new Promise((resolve, reject) => {
+    value.save((err, saved) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(saved);
+      }
+    });
+  });
+}
+
 const values = seed(400);
+const promises = [];
 db.collection.drop({});
 values.forEach((item) => {
   const value = new db(item);
-  value.save((err, review) => {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log(review);
-    }
-  });
+  promises.push(save(value));
 });
 
-setTimeout(() => {
-  Mongoose.connection.close();
-}, 12000);
+Promise.all(promises)
+  .then(() => Mongoose.connection.close());
+
+// setTimeout(() => {
+//   Mongoose.connection.close();
+// }, 12000);
 // connection.end();
