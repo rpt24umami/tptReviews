@@ -3,11 +3,12 @@ div {
 }
 
 .reviewContainer {
-  width: 600px;
+  width: 714.656px;
   background-color: #fff;
   box-sizing: border-box;
   color: #222;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid rgb(221, 221, 221);
+  padding-bottom: 10px;
   font: 12px Proxima Nova,Helvetica Neue,Helvetica,Arial,sans-serif;
 }
 
@@ -18,24 +19,50 @@ div {
 .avatar {
   font-size: 14px;
   display: flex;
+  font-stretch: 100%;
+  box-sizing: border-box;
+  margin-bottom: 14px;
+  padding-bottom: 18px;
+  background-repeat: no-repeat;
+  line-height: 21px;
+}
+
+.avatar span {
+  height: 42px;
+  width: 40px;
 }
 
 .avatar_img {
-  vertical-align: middle;
   border-radius: 50%;
-  max-width: 30%;
-  height: auto;
+  vertical-align: middle;
+  width: 40px;
   margin:0;
-  padding: 5px;
 }
 
 .avatar_namedate {
+  display: block;
   margin-left: 12px;
+  line-height: 21px;
+  height: 42px;
   vertical-align: middle;
 }
 
 .avatar_namedate_date {
+  display: block;
   color: #777;
+  margin-left: 0px;
+  margin-block-end: 0px;
+  margin-block-start: 0px;
+}
+
+.avatar_namedate_name {
+  border-width: 0px;
+  margin-block-end: 0px;
+  margin-block-start: 0px;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  width: 90px;
 }
 
 #sortGrade {
