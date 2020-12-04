@@ -46,7 +46,7 @@ class App extends React.Component {
   }
 
   addHelpful(reviewId) {
-    axios.put(`/helpful/${reviewId}`)
+    axios.put(`http://localhost:3001/helpful/${reviewId}`)
       .then((results) => this.getReviews());
   }
 
