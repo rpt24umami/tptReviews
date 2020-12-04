@@ -6,8 +6,11 @@ const app = express();
 
 const path = require('path');
 
+const cors = require('cors');
 const { ModuleFilenameHelpers } = require('webpack');
 const { db, review, schema } = require('./mongodb.js');
+
+app.use(cors());
 
 app.use(express.static(path.join(__dirname, '../dist')));
 
