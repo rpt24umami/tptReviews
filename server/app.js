@@ -11,6 +11,8 @@ const { db, review, schema } = require('./mongodb.js');
 
 app.use(express.static(path.join(__dirname, '../dist')));
 
+app.use('/static', express.static(path.join(__dirname, '../src')));
+
 app.get('/', (req, res) => {
   res.send('index.html');
 });
