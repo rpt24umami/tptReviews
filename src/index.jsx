@@ -55,7 +55,7 @@ class App extends React.Component {
     const reviews = this.state.reviews.map((review, key) => <Review review={review} helpful={this.addHelpful} key={key}/>);
     return (
       <div>
-        <img src="Stats.png"></img>
+        <img src="http://localhost:3000/Stats.png"></img>
         <Sort grades={this.state.grades} onSort={this.onSortChange} />
         {reviews}
       </div>
