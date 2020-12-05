@@ -10,7 +10,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productId: 12,
+      productId: 0,
       reviews: [],
       sort: {
         ratings: undefined,
@@ -25,7 +25,8 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.getReviews();
+    this.setState({productId: window.location.pathname.split('/')[2]*1}, () => this.getReviews());
+
   //   axios.get(`/${this.state.productId}/reviews/`)
   //     .then((results) => this.setState({ reviews: results.data.reviews, grades: results.data.grades }));
   }
