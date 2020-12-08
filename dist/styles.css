@@ -2,6 +2,10 @@ div {
   display: block;
 }
 
+#chartimg {
+  margin-left: 20%;
+}
+
 .reviewContainer {
   width: 714.656px;
   background-color: #fff;
@@ -10,10 +14,15 @@ div {
   border-bottom: 1px solid rgb(221, 221, 221);
   padding-bottom: 10px;
   font: 12px Proxima Nova,Helvetica Neue,Helvetica,Arial,sans-serif;
+  margin-left: 20%;
 }
 
 .sortContainer div {
   display: inline-block;
+}
+
+.sortContainer{
+  margin-left: 20%;
 }
 
 .avatar {
