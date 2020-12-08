@@ -56,48 +56,55 @@ app.get('/products/:id/ratings', (req, res) => {
   const match = req.params.id;
   const returnValue = [];
   const matNames = ['Dice Rolling Probability', 'Laplace Transforms, real world applications', 'American History 1700-1800', 'Github for Dummies'];
-  returnValue.push(matNames[Math.floor((Math.random() * matNames.length))]);
-  review.aggregate([{ $match: { productId: parseInt(req.params.id) } }, { $group: { _id: '$productId', average: { $avg: '$rating' }, count: { $sum: 1 } } }], (err, result) => {
+  review.findOne({ productId: parseInt(req.params.id) }, (err, results) => {
     if (err) {
-      res.send(err);
-      return;
-    }
-    returnValue.push(result);
-    review.aggregate([{
-      $project: {
-        _id: 0,
-        grade: 1,
-        productId: 1,
-      },
-    }, { $match: { productId: parseInt(req.params.id) } },
-    {
-      $unwind: '$grade',
-    }, {
-      $group: {
-        _id: '$grade',
-        count: {
-          $sum: 1,
-        },
-      },
-    },
-    ], (err, result) => {
-      if (err) {
-        res.send(err);
-        return;
-      }
-      returnValue.push(result);
-      review.aggregate([{ $match: { productId: parseInt(req.params.id) } },
-        { $group: { _id: '$rating', count: { $sum: 1 } } },
-      ], (err, result) => {
+      res.sendStatus(500).send(err);
+    } else {
+      returnValue.push(results.title.slice(0,20));
+      review.aggregate([{ $match: { productId: parseInt(req.params.id) } }, { $group: { _id: '$productId', average: { $avg: '$rating' }, count: { $sum: 1 } } }], (err, result) => {
         if (err) {
           res.send(err);
           return;
         }
         returnValue.push(result);
-        res.send(returnValue);
+        review.aggregate([{
+          $project: {
+            _id: 0,
+            grade: 1,
+            productId: 1,
+          },
+        }, { $match: { productId: parseInt(req.params.id) } },
+        {
+          $unwind: '$grade',
+        }, {
+          $group: {
+            _id: '$grade',
+            count: {
+              $sum: 1,
+            },
+          },
+        },
+        ], (err, result) => {
+          if (err) {
+            res.send(err);
+            return;
+          }
+          returnValue.push(result);
+          review.aggregate([{ $match: { productId: parseInt(req.params.id) } },
+            { $group: { _id: '$rating', count: { $sum: 1 } } },
+          ], (err, result) => {
+            if (err) {
+              res.send(err);
+              return;
+            }
+            returnValue.push(result);
+            res.send(returnValue);
+          });
+        });
       });
-    });
-  });
+    }
+  })
+
 });
 
 module.exports = app;
