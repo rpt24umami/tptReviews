@@ -45,7 +45,7 @@ app.put('/helpful/:reviewId', (req, res) => {
   review.findOneAndUpdate({ _id: req.params.reviewId }, {$inc: {helpful: 1}}, (err, results) => {
     if (err) {
       console.log(err);
-      res.send(err);
+      res.status(500).send(err);
       return;
     }
     res.send(results);
