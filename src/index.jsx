@@ -25,6 +25,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    console.log(window.location.pathname.split('/')[2]*1);
     this.setState({productId: window.location.pathname.split('/')[2]*1 || 5}, () => this.getReviews());
 
   //   axios.get(`/${this.state.productId}/reviews/`)
