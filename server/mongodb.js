@@ -1,11 +1,13 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/reviews', { useNewUrlParser: true });
+//ongoose.connect('mongodb://54.176.228.90:27017/reviews', { useNewUrlParser: true });
+
+mongoose.connect('mongodb://54.176.228.90:27017/reviews', { useNewUrlParser: true });
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
-  //console.log('connected');
+  console.log('connected');
 });
 
 const reviewsSchema = new mongoose.Schema({
@@ -21,6 +23,8 @@ const reviewsSchema = new mongoose.Schema({
 
 const Review = mongoose.model('Review', reviewsSchema);
 
+
+
 // Review.collection.drop({});
 
 const firstValue = new Review({ description: 'Description', alignment: ['1', '2'] });
@@ -28,6 +32,8 @@ const firstValue = new Review({ description: 'Description', alignment: ['1', '2'
 firstValue.save((err, review) => {
   if (err) {
     console.log(err);
+  } else {
+
   }
 });
 

@@ -80,7 +80,14 @@ values.forEach((item) => {
 });
 
 Promise.all(promises)
+  .then (() => {
+    db.find( {}, (err, docs) => {
+      console.log('docs', docs);
+    })
+  })
   .then(() => Mongoose.connection.close());
+
+
 
 // setTimeout(() => {
 //   Mongoose.connection.close();

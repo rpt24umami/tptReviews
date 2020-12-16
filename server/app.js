@@ -22,7 +22,6 @@ app.get('/', (req, res) => {
 
 app.get('/products/:id/reviews/', (req, res) => {
   const returnObject = {};
-  console.log(req.params.id);
   let query = { productId: req.params.id, grade: (req.query.grades !== 'false') ? req.query.grades : undefined, rating: (req.query.ratings !== 'false') ? req.query.ratings : undefined}
   Object.keys(query).forEach(key => {
     if (query[key] === undefined) {
