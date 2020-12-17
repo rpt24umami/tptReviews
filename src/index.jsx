@@ -39,7 +39,7 @@ class App extends React.Component {
   }
 
   getReviews() {
-    axios.get(`http://localhost:3001/products/${this.state.productId}/reviews?ratings=${this.state.sort.ratings || false}&grades=${this.state.sort.grades || false}`)
+    axios.get(`http://18.144.61.129:3001/products/${this.state.productId}/reviews?ratings=${this.state.sort.ratings || false}&grades=${this.state.sort.grades || false}`)
       .then((results) => this.setState(
         {
           reviews: results.data.reviews, grades: results.data.grades,
@@ -48,7 +48,7 @@ class App extends React.Component {
   }
 
   addHelpful(reviewId) {
-    axios.put(`http://localhost:3001/helpful/${reviewId}`)
+    axios.put(`http://18.144.61.129:3001/helpful/${reviewId}`)
       .then((results) => this.getReviews());
   }
 
@@ -56,7 +56,7 @@ class App extends React.Component {
     const reviews = this.state.reviews.map((review, key) => <Review review={review} helpful={this.addHelpful} key={key}/>);
     return (
       <div>
-        <img src="http://localhost:3001/Stats.png" id="chartimg"></img>
+        <img src="http://18.144.61.129:3001/Stats.png" id="chartimg"></img>
         <Sort grades={this.state.grades} onSort={this.onSortChange} />
         {reviews}
       </div>
