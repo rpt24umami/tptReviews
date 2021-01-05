@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
-
+const key = require('./mongokey.js');
 //ongoose.connect('mongodb://54.176.228.90:27017/reviews', { useNewUrlParser: true });
 
-mongoose.connect('mongodb://54.176.228.90:27017/reviews', { useNewUrlParser: true });
+mongoose.connect(`mongodb://${key.user}:${key.pass}@${key.ip}/reviews`, { useNewUrlParser: true });
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));

@@ -1,6 +1,7 @@
 #files
 dist/bundle.js
 dist/bundle.js.LICENSE.txt
+server/mongokey.js
 # Logs
 logs
 *.log
