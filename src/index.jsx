@@ -25,8 +25,8 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    console.log(window.location.pathname.split('/')[2]*1);
-    this.setState({productId: window.location.pathname.split('/')[2]*1 || 5}, () => this.getReviews());
+    console.log((isNaN(window.location.pathname.split('/')[2]*1)) ? 5: window.location.pathname.split('/')[2]*1);
+    this.setState({productId: (isNaN(window.location.pathname.split('/')[2]*1)) ? 5: window.location.pathname.split('/')[2]*1}, () => this.getReviews());
 
   //   axios.get(`/${this.state.productId}/reviews/`)
   //     .then((results) => this.setState({ reviews: results.data.reviews, grades: results.data.grades }));
