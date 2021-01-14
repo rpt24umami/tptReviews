@@ -1,4 +1,5 @@
 var path = require('path');
+const CompressionPlugin = require("compression-webpack-plugin");
 var S3Plugin = require('webpack-s3-plugin');
 var SRC_DIR = path.join(__dirname, '/src');
 var DIST_DIR = path.join(__dirname,'/dist');
@@ -22,6 +23,10 @@ module.exports = {
     ]
   },
   plugins: [
+    new CompressionPlugin({
+      filename: `[path][base].gz`,
+      algorithm: 'gzip',
+    }),
     new S3Plugin({
       include:'bundle.js',
       s3Options: {

@@ -2,6 +2,8 @@ const express = require('express');
 
 const mongoose = require('mongoose');
 
+const compression = require('compression');
+const expressStaticGzip = require("express-static-gzip");
 const app = express();
 
 const path = require('path');
@@ -12,12 +14,14 @@ const { db, review, schema } = require('./mongodb.js');
 
 app.use(cors());
 
-app.use(express.static(path.join(__dirname, '../dist')));
 
-app.use('/static', express.static(path.join(__dirname, '../src')));
+//app.use(express.static(path.join(__dirname, '../dist')));
+
+// app.use('/static', express.static(path.join(__dirname, '../src')));
 
 app.get('/', (req, res) => {
-  //res.send('index.html');
+  console.log(req.headers);
+  res.sendFile(path.join(__dirname, '../dist/index.html'))
 });
 
 app.get('/products/:id/reviews/', (req, res) => {
