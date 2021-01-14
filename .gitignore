@@ -2,6 +2,7 @@
 dist/bundle.js
 dist/bundle.js.LICENSE.txt
 server/mongokey.js
+AWSkey.js
 # Logs
 logs
 *.log
